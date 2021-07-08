@@ -1,0 +1,292 @@
+#:kivy 2.0.0
+#:import rgba kivy.utils.get_color_from_hex
+
+<Gerenciador>:
+    Login:
+    Tarefas:
+
+<Login>:
+    name: 'login'
+    canvas:
+        Color:
+            rgba: rgba('#f5f5f5')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    MDBoxLayout:
+        orientation: "vertical"
+        size_hint: .2, .2
+        pos_hint: {'center_x': .5, 'center_y': .7}
+        spacing: '10dp'
+
+        Image:
+            source: 'Tutoriais_Kivy_KivyMD/Icones/Produtivese.png'
+            size_hint_x: .8
+            pos_hint: {"center_x": .5}
+
+        MDLabel:
+            text: 'PRODUTIVESE'
+            adaptive_size: True
+            text_size: None, self.font_size
+            theme_text_color: "Custom"
+            text_color: rgba('#23a3bc')
+            font_style: 'H6'
+            pos_hint: {'center_x': .5, 'center_y': .5}
+
+    MDBoxLayout:
+        adaptive_height: True
+        orientation: 'vertical'
+        spacing: '10dp'
+        padding: '30dp'
+        pos_hint: {'center_y': .3}
+
+        MDTextField:
+            hint_text: 'Usuário'
+            color_mode: 'custom'
+            helper_text_mode: 'on_focus'
+            helper_text: 'Digite o nome do usuário'
+            line_color_focus: rgba('#00748c')
+
+
+        MDTextField:
+            hint_text: 'Senha'
+            color_mode: 'custom'
+            helper_text_mode: 'on_focus'
+            helper_text: 'Digite sua senha'
+            line_color_focus: rgba('#00748c')
+
+        Widget:
+            size_hint_y: None
+            height: '40dp'
+
+        BoxLayout:
+            spacing: '10dp'
+
+            Widget:
+
+            MDFlatButton:
+                id: button_sair
+                text: 'SAIR'
+                on_release: app.get_running_app().stop()
+
+            MDFillRoundFlatButton:
+                id: button_next
+                text: 'LOGIN'
+                on_release: app.root.current = 'tarefas'
+                md_bg_color: rgba('#00748c')
+
+<Tarefas>:
+    name: 'tarefas'
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDToolbar:
+            id: top_toolbar
+            title: 'Title and comunication!'
+            size_hint_y: None
+            height: 40
+            elevation: 20
+            pos_hint: {'top': 1 }
+            md_bg_color: rgba('#66d5ef')
+            specific_text_color: rgba('#000000')
+            left_action_items:
+                [["robot", lambda x: root.robot_function(), 'Tool Tips Robot']]
+            right_action_items:
+                [['skip-previous', lambda x: root.left_function(), 'Tool Tips Skip Previous'],
+                ['skip-next', lambda x: root.right_function(), 'Tool Tips Skip Next']]
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            md_bg_color: rgba('#66d5ef')
+            padding: 4
+            spacing: 4
+            MDCard:
+                radius:5
+                elevation: 5
+            MDCard:
+                radius:5
+                elevation: 5
+            MDCard:
+                radius:5
+                elevation: 5
+            MDCard:
+                radius:5
+                elevation: 5
+        MDBoxLayout:
+            md_bg_color: rgba('#66d5ef')
+            size_hint_y: None
+            height: 70
+            padding: 3
+            spacing: 3
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                md_bg_color: rgba('#23a3bc')
+                size_hint_x: None
+                width: 64
+                radius: 5
+                MDIconButton:
+                    icon: 'key'
+                    user_font_size: '25sp'
+                    pos_hint: {'center_x': .5}
+                    on_release: app.root.current = 'login'
+                MDLabel:
+                    text: 'Login'
+                    font_size: 12
+                    pos_hint: {'center_x': .5}
+                    halign: 'center'
+                Widget:
+                    size_hint_y: None
+                    height: 4
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                md_bg_color: rgba('#23a3bc')
+                size_hint_x: None
+                width: 64
+                radius: 5
+                MDIconButton:
+                    icon: 'folder'
+                    image: 'icones/'
+                    user_font_size: '25sp'
+                    pos_hint: {'center_x': .5}
+                MDLabel:
+                    text: 'Arquivo'
+                    font_size: 12
+                    pos_hint: {'center_x': .5}
+                    halign: 'center'
+                Widget:
+                    size_hint_y: None
+                    height: 4
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                md_bg_color: rgba('#23a3bc')
+                size_hint_x: None
+                width: 64
+                radius: 5
+                MDIconButton:
+                    icon: 'table-of-contents'
+                    user_font_size: '25sp'
+                    pos_hint: {'center_x': .5}
+                MDLabel:
+                    text: 'Tarefas'
+                    font_size: 12
+                    pos_hint: {'center_x': .5}
+                    halign: 'center'
+                Widget:
+                    size_hint_y: None
+                    height: 4
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                md_bg_color: rgba('#23a3bc')
+                size_hint_x: None
+                width: 64
+                radius: 5
+                MDIconButton:
+                    icon: 'mouse'
+                    user_font_size: '25sp'
+                    pos_hint: {'center_x': .5}
+                MDLabel:
+                    text: 'Mouse'
+                    font_size: 12
+                    pos_hint: {'center_x': .5}
+                    halign: 'center'
+                Widget:
+                    size_hint_y: None
+                    height: 4
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                md_bg_color: rgba('#23a3bc')
+                size_hint_x: None
+                width: 64
+                radius: 5
+                MDIconButton:
+                    icon: 'keyboard'
+                    user_font_size: '25sp'
+                    pos_hint: {'center_x': .5}
+                MDLabel:
+                    text: 'Teclado'
+                    font_size: 12
+                    pos_hint: {'center_x': .5}
+                    halign: 'center'
+                Widget:
+                    size_hint_y: None
+                    height: 4
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                md_bg_color: rgba('#23a3bc')
+                size_hint_x: None
+                width: 64
+                radius: 5
+                MDIconButton:
+                    icon: 'timer'
+                    user_font_size: '25sp'
+                    pos_hint: {'center_x': .5}
+                MDLabel:
+                    text: 'Timer'
+                    font_size: 12
+                    pos_hint: {'center_x': .5}
+                    halign: 'center'
+                Widget:
+                    size_hint_y: None
+                    height: 4
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                md_bg_color: rgba('#23a3bc')
+                size_hint_x: None
+                width: 64
+                radius: 5
+                MDIconButton:
+                    icon: 'chevron-double-down'
+                    user_font_size: '25sp'
+                    pos_hint: {'center_x': .5}
+                MDLabel:
+                    text: 'Scraping'
+                    font_size: 12
+                    pos_hint: {'center_x': .5}
+                    halign: 'center'
+                Widget:
+                    size_hint_y: None
+                    height: 4
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                md_bg_color: rgba('#23a3bc')
+                size_hint_x: None
+                width: 64
+                radius: 5
+                MDIconButton:
+                    icon: 'cog'
+                    user_font_size: '25sp'
+                    pos_hint: {'center_x': .5}
+                MDLabel:
+                    text: 'Config'
+                    font_size: 12
+                    pos_hint: {'center_x': .5}
+                    halign: 'center'
+                Widget:
+                    size_hint_y: None
+                    height: 4
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                md_bg_color: rgba('#23a3bc')
+                size_hint_x: None
+                width: 64
+                radius: 5
+                MDIconButton:
+                    icon: 'help'
+                    user_font_size: '25sp'
+                    pos_hint: {'center_x': .5}
+                MDLabel:
+                    text: 'Ajuda'
+                    font_size: 12
+                    pos_hint: {'center_x': .5}
+                    halign: 'center'
+                Widget:
+                    size_hint_y: None
+                    height: 4
