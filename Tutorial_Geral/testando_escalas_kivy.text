@@ -1,0 +1,14 @@
+23 - Python Kivy - Influência do PPI nas interfaces gráficas
+https://www.youtube.com/watch?v=N5piKwoJ5uw&list=PLsMpSZTgkF5AV1FmALMgW8W-TvrfR3nrs&index=23
+
+Vamos digitar no terminal o codigo abaixo:
+
+python 25kivy.py -m screen:
+
+apos isso vamos ter os modelos de celular ex: phone_iphone_6 iPhone 6
+
+digitamos novamente com nome do celular , portrait
+
+python 25kivy.py -m screen:phone_iphone_6 iPhone 6, portrait
+
+
