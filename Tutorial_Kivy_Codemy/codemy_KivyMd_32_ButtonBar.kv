@@ -1,0 +1,21 @@
+#:kivy 2.0.0
+
+MDBoxLayout:
+    orientation: 'vertical'
+    MDToolbar:
+        id: top_toolbar
+        title: 'Top toolbar'
+        left_action_items: [['menu']]
+        right_action_items: [['dots-vertical']]
+    MDLabel:
+        id: my_label
+        text: 'my text'
+        halign: 'center'
+    MDBottomAppBar:
+        MDToolbar:
+            icon: 'git'
+            left_action_items: [['menu', lambda x: app.presser1()]]
+            title: 'Bottom Menu'
+            type: 'bottom'
+            mode: 'end' #free-end, center, free-center
+            on_action_button: app.presser()

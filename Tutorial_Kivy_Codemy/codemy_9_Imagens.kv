@@ -1,0 +1,23 @@
+#:kivy 2.0.0
+#:import rgba kivy.utils.get_color_from_hex
+
+<Botao_Padrao@Button>
+    font_size: 32
+    background_normal: ''
+    background_color: rgba('#6002ee')
+
+<MyLayout>
+
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        #padding: 50
+        #spacing: 20
+
+        Image:
+            source: 'Tutorial_Kivy_Codemy/Icones/Logo_2_ProdutiveSE.png'
+            allow_stretch: True # A imagem ira alongar junto da janela
+            keep_ratio: True
+
+        #Botao_Padrao:
+         #   text: 'Hello World!'

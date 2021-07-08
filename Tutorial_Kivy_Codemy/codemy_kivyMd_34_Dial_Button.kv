@@ -1,0 +1,28 @@
+#:kivy 2.0.0
+#:import rgba kivy.utils.get_color_from_hex
+
+MDBoxLayout:
+    orientation: 'vertical'
+    MDToolbar:
+        id: my_mdtoolbar
+        title: 'Bottom Navbar'
+        md_bg_color: rgba('#FFD600')
+        specific_text_color: rgba('#000000')
+
+    MDScreen:
+        MDLabel:
+            id: my_label
+            text: 'My Label!'
+            halign: 'center'
+
+        MDFloatingActionButtonSpeedDial:
+            data: app.data
+            root_button_anim: True
+            #label_text_color: rgba('#000000')
+            #bg_color_stack_button: rgba('#FFD600')
+            #bg_color_root_button: rgba('#FFD600')
+            #color_icon_root_button: rgba('#000000')
+            #color_icon_stack_button: rgba('#000000')
+            callback: app.callback
+            on_open: app.open()
+            on_close: app.close()

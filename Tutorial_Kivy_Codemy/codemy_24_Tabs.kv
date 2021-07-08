@@ -1,0 +1,48 @@
+#:kivy 2.0.0
+#:import rgba kivy.utils.get_color_from_hex
+
+<Botao_Padrao@Button>:
+    font_size: 32
+    #size_hint: (1, 0.5)
+    background_normal: ''
+    background_color: rgba('#FF6D00')
+
+<Label_Padrao@Label>:
+    font_size: 32
+    #size_hint: (1, 0.2)
+    #text_size: self.size
+    bold: True
+    haling: 'center'
+    valign: 'middle'
+    color: rgba('#000000') # cor da fonte
+    canvas.before:
+        Color:
+            rgba: rgba('#FFB74D')
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<MyLayout>
+    do_default_tab: False
+    size_hint: .5, .5
+    pos_hint: {'center_x': .5, 'center_y': .5}
+    # ft_top, left_mid, left_bottom, top_left, top_mid, to_right, right_top, right_mid,
+    # right_bottom, botton_left, bottom_mid, bottom_right
+    tab_pos: 'top_mid'
+
+    TabbedPanelItem:
+        text: 'Tab 1'
+        Label_Padrao:
+            text: 'Label Text Tab 1'
+
+    TabbedPanelItem:
+        text: 'Tab 2'
+        BoxLayout:
+            Label_Padrao:
+                text: 'Aperte o botão ao lado.'
+            Botao_Padrao:
+                text: 'Click Me!!!'
+    TabbedPanelItem:
+        text: 'Tab 3'
+        Image:
+            source: 'Tutorial_Kivy_Codemy/icones/Logo_2_ProdutiveSE.png'

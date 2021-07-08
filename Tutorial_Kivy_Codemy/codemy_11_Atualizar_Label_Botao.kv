@@ -1,0 +1,44 @@
+#:kivy 2.0.0
+#:import rgba kivy.utils.get_color_from_hex
+
+<Label_Padrao@Label>
+    font_size: 32
+    color: rgba('#021aee') # cor da fonte
+    bold: True
+    canvas.before:
+        Color:
+            rgba: rgba('#ffc77d')
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<TextInput_Padrao@TextInput>
+    font_size: 32
+    multiline: False
+    size_hint: (1, 0.5)
+    background_color: rgba('#90ee02')
+
+<Botao_Padrao@Button>
+    font_size: 32
+    size_hint: (1, 0.5)
+    background_normal: ''
+    background_color: rgba('#ee6002')
+
+<MyLayout>
+
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 50
+        spacing: 20
+
+        Label_Padrao:
+            id: name_label
+            text: 'Qual é seu nome?'
+
+        TextInput_Padrao:
+            id: name_input
+
+        Botao_Padrao:
+            text: 'Submit'
+            on_press: root.press()

@@ -1,0 +1,33 @@
+#:kivy 2.0.0
+#:import rgba kivy.utils.get_color_from_hex
+
+<Botao_Padrao@Button>
+    font_size: 32
+    background_normal: ''
+    background_color: rgba('#6002ee')
+    size_hint: (0.3, 0.3)
+
+<MyLayout>
+
+    FloatLayout:
+        size: root.width, root.height
+# podemos usar no pos_hint os argumentos: x, y, top, bottom, left e right
+        Botao_Padrao:
+            text: 'Top left'
+            pos_hint: {'x': 0, 'top': 1}
+
+        Botao_Padrao:
+            text: 'Top right'
+            pos_hint: {'x': 0.7, 'top': 1}
+
+        Botao_Padrao:
+            text: 'Center'
+            pos_hint: {'x': 0.35, 'y': 0.35}
+
+        Botao_Padrao:
+            text: 'Bottom left'
+            pos_hint: {'x': 0, 'bottom': 1}
+
+        Botao_Padrao:
+            text: 'Bottom right'
+            pos_hint: {'x': 0.7, 'bottom': 1}

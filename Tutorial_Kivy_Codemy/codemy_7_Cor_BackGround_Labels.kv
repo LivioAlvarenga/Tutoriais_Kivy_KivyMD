@@ -1,0 +1,39 @@
+#:kivy 2.0.0
+#:import utils kivy.utils
+
+<Label_Padrao@Label>
+    font_size: 45
+    color: utils.rgba('#90ee02') # cor da fonte
+    bold: True
+    italic: True
+    outline_color: utils.rgba('#ee0290') # cor da borda da fonte
+    outline_width: 2 # tamanho da borda da fonte
+    canvas.before:
+        Color:
+            rgba: utils.rgba('#6002ee')
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<TextInput_Padrao@TextInput>
+    multiline: False
+    background_color: utils.rgba('#7e3ff2')
+
+<Botao_Padrao@Button>
+    font_size: 32
+    background_normal: ''
+    background_color: utils.rgba('#9965f4')
+
+<MyLayout>
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 10
+        spacing: 10
+
+        Label_Padrao:
+            text: 'Name'
+        TextInput_Padrao:
+
+        Botao_Padrao:
+            text: 'Clear'

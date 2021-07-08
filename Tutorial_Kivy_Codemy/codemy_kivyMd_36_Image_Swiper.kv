@@ -1,0 +1,59 @@
+#:kivy 2.0.0
+#:import rgba kivy.utils.get_color_from_hex
+
+
+<MySwiper@MDSwiperItem>
+    #FitImage:
+        #source: 'Icones/Símbolo 2 ProdutiveSE.png'
+        #radius: [20]
+
+MDScreen:
+    MDToolbar:
+        id: my_mdtoolbar
+        title: 'Bottom Navbar'
+        elevation: 10
+        pos_hint: {'top': 1 }
+        md_bg_color: rgba('#FFD600')
+        specific_text_color: rgba('#000000')
+        right_action_items: [['skip-previous', lambda x: app.on_swipe_left()], ['skip-next', lambda x: app.on_swipe_right()]]
+
+    MDSwiper:
+        id: my_swiper
+        size_hint_y: None
+        height: root.height - my_mdtoolbar.height - dp(40)
+        y: root.height - self.height - my_mdtoolbar.height - dp(20)
+
+        on_swipe:
+        on_pre_swipe:
+        on_overswipe_right:
+        on_overswipe_left:
+        on_swipe_left: app.on_swipe_left()
+        on_swipe_right: app.on_swipe_right()
+
+        MySwiper:
+            FitImage:
+                source: 'Tutorial_Kivy_Codemy/Icones/Símbolo_2_ProdutiveSE.png'
+                radius: [20]
+        MySwiper:
+            FitImage:
+                source: 'Tutorial_Kivy_Codemy/Icones/batman.png'
+                radius: [20]
+        MySwiper:
+            FitImage:
+                source: 'Tutorial_Kivy_Codemy/Icones/Logo_2_ProdutiveSE.png'
+                radius: [20]
+        MySwiper:
+            FitImage:
+                source: 'Tutorial_Kivy_Codemy/Icones/imagem_montanha.jpg'
+                radius: [20]
+    MDBoxLayout:
+        MDRaisedButton:
+            text: 'Anterior'
+            on_release:
+                #if my_swiper.get_current_index() > 0: my_swiper.set_current(my_swiper.get_current_index()-1)
+                app.on_swipe_left()
+        MDRaisedButton:
+            text: 'Proximo'
+            on_release:
+                #if my_swiper.get_current_index() < len(my_swiper.get_items())-1: my_swiper.set_current(my_swiper.get_current_index()+1)
+                app.on_swipe_right()

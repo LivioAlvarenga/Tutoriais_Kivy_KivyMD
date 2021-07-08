@@ -1,0 +1,76 @@
+#:kivy 2.0.0
+#:import rgba kivy.utils.get_color_from_hex
+
+<Label_Padrao@Label>
+    font_size: 20
+    #size_hint: (1, 0.2)
+    #text_size: self.size
+    bold: True
+    haling: 'center'
+    valign: 'middle'
+    color: rgba('#000000') # cor da fonte
+    canvas.before:
+        Color:
+            rgba: rgba('#FFEA00')
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<CheckBox_padrao@CheckBox>
+    canvas.before:
+        Color:
+            rgba: rgba('#000000')
+        Rectangle:
+            pos:self.center_x-8, self.center_y-8
+            size:[16,16]
+
+<MyLayout>
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 10
+        spacing: 20
+
+        Label_Padrao:
+            text: 'Escolha o sabor da Pizza.'
+            font_size: 32
+
+        GridLayout:
+            cols: 2
+
+            Label_Padrao:
+                text: 'Pepperoni'
+            CheckBox_padrao:
+                on_active: root.checkbox_click(self, self.active, 'Pepperoni')
+
+            Label_Padrao:
+                text: 'A moda'
+            CheckBox_padrao:
+                on_active: root.checkbox_click(self, self.active, 'A moda')
+
+            Label_Padrao:
+                text: 'Carne seca'
+            CheckBox_padrao:
+                on_active: root.checkbox_click(self, self.active, 'Carne seca')
+
+            Label_Padrao:
+                text: 'Marguerita'
+            CheckBox_padrao:
+                on_active: root.checkbox_click(self, self.active, 'Marguerita')
+
+        GridLayout:
+            cols: 4
+            Label_Padrao:
+                text: 'Refrigerante Comun'
+            CheckBox_padrao:
+                group: 'refrigerentes'
+                on_active: root.checkbox_click(self, self.active, 'Refrigerante Comun')
+            Label_Padrao:
+                text: 'Refrigerante Zero'
+            CheckBox_padrao:
+                group: 'refrigerentes'
+                on_active: root.checkbox_click(self, self.active, 'Refrigerante Zero')
+
+        Label_Padrao:
+            id: output_label
+            font_size: 32

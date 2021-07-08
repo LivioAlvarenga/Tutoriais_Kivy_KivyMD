@@ -1,0 +1,59 @@
+#:kivy 2.0.0
+#:import rgba kivy.utils.get_color_from_hex
+
+<Label_Padrao@Label>
+    font_size: 10
+    size_hint: (1, 0.1)
+    color: rgba('#000000') # cor da fonte
+    canvas.before:
+        Color:
+            rgba: rgba('#ECEFF1')
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<TextInput_Padrao@TextInput>
+    font_size: 32
+    multiline: False
+    size_hint: (1, 0.5)
+    background_color: rgba('#90ee02')
+
+<Botao_Padrao@Button>
+    font_size: 32
+    pos_hint: {'center_x':0.5}
+    size_hint: (1, 0.5)
+    background_normal: ''
+    background_color: rgba('#263238')
+
+<Botao_Padrao_Arredondado@Button>
+    font_size: 32
+    pos_hint: {'center_x':0.5}
+    size_hint: (1, 0.3)
+    background_normal: ''
+    background_color: (0,0,0,0) # anulamos o botão para aparecer somente o canvas
+    canvas.before:
+        Color:
+            rgba: rgba('#00C853')
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [58]
+
+<MyLayout>
+    id: my_widget
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 50
+        spacing: 20
+
+        Image:
+            id: my_image
+            source: ''
+
+        Label_Padrao:
+            id: my_label
+
+        FileChooserListView:
+            id: my_filechooser
+            on_selection: my_widget.selected(my_filechooser.selection)

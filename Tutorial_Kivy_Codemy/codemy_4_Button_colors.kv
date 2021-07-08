@@ -1,0 +1,54 @@
+#:kivy 2.0.0
+#:import utils kivy.utils
+
+<MyGridLayout>
+    name: name_id
+    pizza: pizza_id
+    color: color_id
+
+    GridLayout:
+        cols: 1
+        size: root.width, root.height # adequa ao tamanho do GridLayout(root/item pai)
+
+        GridLayout:
+            cols: 2
+            Label:
+                text: 'Name'
+            TextInput:
+                id: name_id
+                multiline: False
+                background_color: utils.rgba('#46b4af')
+
+            Label:
+                text: 'Pizza favorita'
+            TextInput:
+                id: pizza_id
+                multiline: False
+                background_color: utils.rgba('#46b4af')
+
+            Label:
+                text: 'Cor favorita'
+            TextInput:
+                id: color_id
+                multiline: False
+                background_color: utils.rgba('#46b4af')
+
+        Button:
+            text: 'Submit'
+            font_size: 32
+            on_press: root.press()
+# background_normal anula a cor padrão cinza, pois se deixarmos a mesma distorcera a cor real que colocarmos
+            background_normal: ''
+# SteelBlue	#4682B4	(70,130,180) - esta é acor steelBlue, porem Kivy trabalha com RGB entre 0 e 1 para
+#  chegarmos a 70 fazemos 70/255. ficaria assim: (70/255.0, 130/255.0, 180/255.0, 1) Obs: colocamos 255.0
+#  para garantir um resultado float. Or use utils.rgba('#4682B4'), mas precisa importa-lo acima.
+            #background_color: (70/255.0, 130/255.0, 180/255.0, 1)
+            background_color: utils.rgba('#4682B4')
+# TAMANHO AUTOMATICO com size_hint: (.5, .5) o botão ocupara 50% em x e 50% em y
+            size_hint: (.5, .5)
+# TAMANHO FIXO com size_hint: (None, None) e com width e height.
+            #size_hint: (None, None)
+            #width: 100
+            #height: 50
+# Pos_hint determina a posição no eixo x e y com valores de 0 a 1. 0.5 = 50%
+            pos_hint: {'center_x': .5, 'center_y': .5}

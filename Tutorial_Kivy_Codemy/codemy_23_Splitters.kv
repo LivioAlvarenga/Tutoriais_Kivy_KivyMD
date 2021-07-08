@@ -1,0 +1,51 @@
+#:kivy 2.0.0
+#:import rgba kivy.utils.get_color_from_hex
+
+<Botao_Padrao@Button>:
+    font_size: 32
+    #size_hint: (1, 0.5)
+    background_normal: ''
+    background_color: rgba('#FF6D00')
+
+<Label_Padrao@Label>
+    font_size: 32
+    #size_hint: (1, 0.2)
+    #text_size: self.size
+    bold: True
+    haling: 'center'
+    valign: 'middle'
+    color: rgba('#000000') # cor da fonte
+    canvas.before:
+        Color:
+            rgba: rgba('#FFB74D')
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<MyLayout>
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 10
+        spacing: 1
+        Splitter:
+            sizable_from: 'bottom' #top, right, left
+            Botao_Padrao:
+                text: 'Hello world 1'
+
+        Label_Padrao:
+            text: 'Label Text'
+
+        Splitter:
+            sizable_from: 'top'
+            Botao_Padrao:
+                text: 'Hello world 2'
+
+        GridLayout:
+            cols: 2
+            Botao_Padrao:
+                text: 'Left'
+            Splitter:
+                sizable_from: 'left'
+                Botao_Padrao:
+                    text: 'Right'

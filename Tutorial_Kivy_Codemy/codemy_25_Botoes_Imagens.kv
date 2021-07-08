@@ -1,0 +1,46 @@
+#:kivy 2.0.0
+#:import rgba kivy.utils.get_color_from_hex
+
+<Label_Padrao@Label>
+    font_size: 32
+    #size_hint: (1, 0.2)
+    #text_size: self.size
+    bold: True
+    haling: 'center'
+    valign: 'middle'
+    color: rgba('#000000') # cor da fonte
+    canvas.before:
+        Color:
+            rgba: rgba('#FFB74D')
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<Botao_Padrao@Button>
+    #font_size: 10
+    #size_hint: (1, 0.5)
+    background_normal: ''
+    background_color: rgba('#FF6D00')
+
+<MyLayout>
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 50
+        spacing: 20
+
+        Label_Padrao:
+            id: my_label
+            text: 'My Label'
+        Botao_Padrao:
+            #text: 'Click aqui!'
+            size_hint: (.15, .27)
+            pos_hint: {'center_x': .5}
+            background_color: 0,0,0,0
+            on_press: root.botão_on()
+            on_release: root.botão_off()
+            Image:
+                id: my_image
+                source: 'Tutorial_Kivy_Codemy/icones/user_off.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y

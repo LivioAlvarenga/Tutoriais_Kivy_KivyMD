@@ -1,0 +1,58 @@
+#:kivy 2.0.0
+#:import rgba kivy.utils.get_color_from_hex
+#:import Factory kivy.factory.Factory
+
+<Label_Padrao@Label>:
+    font_size: 32
+    #size_hint: (1, 0.2)
+    #text_size: self.size
+    bold: True
+    haling: 'center'
+    valign: 'middle'
+    color: rgba('#000000') # cor da fonte
+    canvas.before:
+        Color:
+            rgba: rgba('#FFB74D')
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<Botao_Padrao@Button>:
+    font_size: 32
+    #size_hint: (1, 0.5)
+    background_normal: ''
+    background_color: rgba('#FF6D00')
+
+<Gerenciador_Janelas>:
+    Primeira_Janela:
+    Segunda_Janela:
+
+<Primeira_Janela>:
+    name: 'primeira_janela'
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 10
+        spacing: 20
+        Label_Padrao:
+            text: 'Janela 01'
+        Botao_Padrao:
+            text: 'Passar para proxima janela'
+            on_release:
+                app.root.current = 'segunda_janela'
+                root.manager.transition.direction = 'left' # direção da transição da janela
+
+<Segunda_Janela>:
+    name: 'segunda_janela'
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 10
+        spacing: 20
+        Label_Padrao:
+            text: 'Janela 02'
+        Botao_Padrao:
+            text: 'Voltar'
+            on_release:
+                app.root.current = 'primeira_janela'
+                root.manager.transition.direction = 'right' #up, down and left

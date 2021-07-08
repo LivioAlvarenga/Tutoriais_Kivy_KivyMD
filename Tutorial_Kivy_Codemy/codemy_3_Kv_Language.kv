@@ -1,0 +1,33 @@
+#:kivy 2.0.0
+
+<MyGridLayout>
+    name: name
+    pizza: pizza
+    color: color
+
+    GridLayout:
+        cols: 1
+        size: root.width, root.height # adequa ao tamanho do GridLayout(root/item pai)
+
+        GridLayout:
+            cols: 2
+            Label:
+                text: 'Name'
+            TextInput:
+                id: name
+                multiline: False
+            Label:
+                text: 'Pizza favorita'
+            TextInput:
+                id: pizza
+                multiline: False
+            Label:
+                text: 'Cor favorita'
+            TextInput:
+                id: color
+                multiline: False
+
+        Button:
+            text: 'Submit'
+            font_size: 32
+            on_press: root.press()

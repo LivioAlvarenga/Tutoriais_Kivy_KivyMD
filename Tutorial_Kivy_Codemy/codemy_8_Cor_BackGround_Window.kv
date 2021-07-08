@@ -1,0 +1,29 @@
+#:kivy 2.0.0
+#:import rgba kivy.utils.get_color_from_hex
+
+<Botao_Padrao@Button>
+    font_size: 32
+    background_normal: ''
+    background_color: rgba('#6002ee')
+
+<MyLayout>
+# uma das maneiras de colocar cor no background é com cavas conforme
+#  abaixo e a outra maneira é no arquivo .py com Window.clearcolor
+#  na função build.
+    canvas.before:
+        Color:
+            rgba: rgba('#d602ee')
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 50
+        spacing: 20
+
+        Botao_Padrao:
+            text: 'Hello World!'
+        Botao_Padrao:
+            text: 'Goodbye World!'

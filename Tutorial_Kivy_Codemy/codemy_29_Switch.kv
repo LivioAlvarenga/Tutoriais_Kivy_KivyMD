@@ -1,0 +1,38 @@
+#:kivy 2.0.0
+#:import rgba kivy.utils.get_color_from_hex
+
+<Label_Padrao@Label>
+    font_size: 32
+    color: rgba('#000000') # cor da fonte
+    bold: True
+    canvas.before:
+        Color:
+            rgba: rgba('#FFD600')
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<Botao_Padrao@Button>
+    font_size: 32
+    #size_hint: (1, 0.5)
+    background_normal: ''
+    background_color: rgba('#212121')
+
+<MyLayout>
+
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 50
+        spacing: 20
+
+        Label_Padrao:
+            id: my_label
+            text: 'Switch ON!'
+
+        Switch:
+            id: my_switch
+            active: True
+            disabled: False #Serve para desativar o Switch
+            font_size: 32
+            on_active: root.switch_click(self, self.active)
