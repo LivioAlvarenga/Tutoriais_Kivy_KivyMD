@@ -12,13 +12,11 @@ Builder.load_file('codemy_25_Botoes_Imagens.kv')
 class MyLayout(Widget):
     def botão_on(self):
         self.ids.my_label.text = 'Você pressionou o botão!'
-        self.ids.my_image.source = 'Tutoriais_Kivy_KivyMD/Tutorial_Kivy_Codemy/\
-icones/user_on.png'
+        self.ids.my_image.source = 'Tutoriais_Kivy_KivyMD/icones/user_on.png'
 
     def botão_off(self):
         self.ids.my_label.text = 'Pressione o botão!'
-        self.ids.my_image.source = 'Tutoriais_Kivy_KivyMD/Tutorial_Kivy_Codemy/\
-icones/user_off.png'
+        self.ids.my_image.source = 'Tutoriais_Kivy_KivyMD/icones/user_off.png'
 
 
 class Codemy_Tutorial_App(App):
