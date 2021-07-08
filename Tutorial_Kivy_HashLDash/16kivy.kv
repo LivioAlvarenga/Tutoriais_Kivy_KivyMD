@@ -1,0 +1,90 @@
+# 11 - Python Kivy - Android Action bar
+# https://www.youtube.com/watch?v=QaSiqX5R6ZQ&list=PLsMpSZTgkF5AV1FmALMgW8W-TvrfR3nrs&index=11
+
+#:kivy 2.0.0
+
+<Gerenciador_de_telas>
+    Menu:
+        name: 'menu'
+    Widget_geral:
+        name: 'widget_geral'
+
+<Menu>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 80
+        spacing: 10
+        Image:
+            source: 'Tutoriais_Kivy_KivyMD/Icones/Logo_2_ProdutiveSE.png'
+            size_hint_y: None
+            height: 200
+            allow_stretch: True
+        Button:
+            text: 'Lista de tarefas'
+            on_release: app.root.current = 'widget_geral'
+        Button:
+            text: 'Assistente'
+        Button:
+            text: 'Sair'
+            on_release: app.stop()
+
+<Widget_geral>:
+    BoxLayout:
+        orientation: 'vertical'
+        # ActionBar é um widget que ja vem configurado no kivy para menus, colocamos ele como
+        #  primeiro da lista porque queremos que ele seja o primeiro a aparacer no Boxlayout.
+        ActionBar:
+            # ActionView são botões que estaram na ActionBar
+            ActionView:
+                # ActionPrevious é um botão padrão de retornar.
+                ActionPrevious:
+                    # coloca icone no ActionPrevious
+                    app_icon: 'Tutoriais_Kivy_KivyMD/Icones/retornar.png'
+                    app_icon_height: 35
+                    app_icon_width: 35
+                    title: 'Tarefas'
+                    # Ao clicar neste botão vamos retornar pa o menu principal
+                    on_release: app.root.current = 'menu'
+                ActionButton:
+                    text: 'Arquivos'
+                # ActionSeparator: colocar uma | entre os menus
+                ActionSeparator:
+                ActionButton:
+                    # Diferente de ActionPrevious o comando para colocar icone é icon:
+                    icon: 'Tutoriais_Kivy_KivyMD/Icones/sair.png'
+                    text: ''
+                    on_release: app.stop()
+
+        ScrollView:
+            BoxLayout:
+                id: scroll_para_colocar_as_tarefas
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+
+        BoxLayout:
+            size_hint_y: None
+            height: 60
+            TextInput:
+                id: texto_da_tarefa
+                font_size: 30
+                foreground_color: [1,0,0,1]
+                background_color: [105,105,105,0.5]
+                multiline: False
+            Button:
+                text: '+'
+                size_hint_x: None
+                width: 60
+                on_release: root.adicionar_nova_tarefa()
+
+<Tarefa_mais_botao_remover>:
+    size_hint_y: None
+    height: 200
+    Label:
+        id: descricao_tarefa
+        font_size: 30
+    Button:
+        text: 'X'
+        size_hint_x: None
+        width: 60
+        on_release:app.root.get_screen('widget_geral').ids.scroll_para_colocar_as_tarefas.remove_widget(root)

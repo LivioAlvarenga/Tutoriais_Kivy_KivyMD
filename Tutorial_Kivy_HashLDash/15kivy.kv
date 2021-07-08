@@ -1,0 +1,78 @@
+# 10 - Python Kivy - Criando um menu com imagem
+# https://www.youtube.com/watch?v=As24tYzXmEU&list=PLsMpSZTgkF5AV1FmALMgW8W-TvrfR3nrs&index=10
+
+#:kivy 2.0.0
+
+<Gerenciador_de_telas>
+    Menu:
+        name: 'menu'
+    Widget_geral:
+        # Este name: pode estar aqui ou no primeiro nivel no item abaixo
+        name: 'widget_geral'
+
+# Criamos esta tarefa <Menu>, sabemos que ela é uma Screen e determinamos o name: da mesma
+#  no <Gerenciador_de_telas>
+<Menu>:
+    # Criamos um BoxLayout para receber os botões abaixo.
+    BoxLayout:
+        orientation: 'vertical'
+        # Coloca uma borda interna (margem) no BoxLayout, obs.: é em pixel
+        padding: 80
+        # Da um espaço entre um widget e outro, no nosso caso será espaço entre botões
+        spacing: 10
+        # Gera um widget de aceita uma imagem
+        Image:
+            # Especifica o caminho da imagem
+            source: 'Tutoriais_Kivy_KivyMD/Icones/Logo_2_ProdutiveSE.png'
+            size_hint_y: None
+            height: 200
+            # Toda imagem vem com allow_stretch: False, ou seja considerar tamanho real e
+            #  não ampliar imagem para distorce-la. Colocando como True é possivel aumentar
+            #  a imagem.
+            allow_stretch: True
+        Button:
+            text: 'Lista de tarefas'
+            on_release: app.root.current = 'widget_geral'
+        Button:
+            text: 'Assistente'
+        Button:
+            text: 'Sair'
+            # Ao soltar o botão o comando app.stop() finaliza o mesmo
+            on_release: app.stop()
+
+<Widget_geral>:
+    BoxLayout:
+        orientation: 'vertical'
+        ScrollView:
+            BoxLayout:
+                id: scroll_para_colocar_as_tarefas
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+
+        BoxLayout:
+            size_hint_y: None
+            height: 60
+            TextInput:
+                id: texto_da_tarefa
+                font_size: 30
+                foreground_color: [1,0,0,1]
+                background_color: [105,105,105,0.5]
+                multiline: False
+            Button:
+                text: '+'
+                size_hint_x: None
+                width: 60
+                on_release: root.adicionar_nova_tarefa()
+
+<Tarefa_mais_botao_remover>:
+    size_hint_y: None
+    height: 200
+    Label:
+        id: descricao_tarefa
+        font_size: 30
+    Button:
+        text: 'X'
+        size_hint_x: None
+        width: 60
+        on_release:app.root.get_screen('widget_geral').ids.scroll_para_colocar_as_tarefas.remove_widget(root)

@@ -1,0 +1,43 @@
+# Tutorial Kivy 008: Mais linguagem kv
+# http://inclem.net/2019/12/18/kivy/kivy_tutorial_008_more_kv_language/
+
+#:kivy 2.0.0
+
+<DrawingWidget>:
+    canvas:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<ColourSlider@Slider>:
+    min: 0
+    max: 1
+    value: 0.5
+    size_hint_y: None
+    height: 50
+
+
+<Interface>:
+    orientation: 'vertical'
+    DrawingWidget:
+    ColourSlider:
+        id: red_slider
+    ColourSlider:
+        id: green_slider
+    ColourSlider:
+        id: blue_slider
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: 50
+        Label:
+            text: 'output colour:'
+        Widget:
+            canvas:
+                Color:
+                    rgb: red_slider.value, green_slider.value, blue_slider.value
+                Rectangle:
+                    size: self.size
+                    pos: self.pos

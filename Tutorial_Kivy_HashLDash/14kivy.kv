@@ -1,0 +1,67 @@
+# 9 - Python Kivy - Múltiplas telas com ScreenManager
+# https://www.youtube.com/watch?v=jZ5KehdPf8c&list=PLsMpSZTgkF5AV1FmALMgW8W-TvrfR3nrs&index=9
+
+#:kivy 2.0.0
+
+# Incluimos o novo item Gerenciador de tarefas que por sua vez chama os itens abaixo
+#  Widget_geral e Tarefa_mais_botao_remover.
+<Gerenciador_de_telas>
+    # Criamos esta Screen (tela) para ser nosso menu geral
+    Screen:
+        # Dentro deste menu criamos um botão para acessar o widget_geral (Lista de tarefas)
+        Button:
+            text: 'Lista de tarefas'
+            # Ao soltar o botão (on_release) ativamos o root(<Gerenciador_de_telas>) e com
+            #  .current enviamos para tela de name: 'widget_geral'
+            on_release: root.current = 'widget_geral'
+    Widget_geral:
+
+# Com a susbstituição de Widget_geral no arquivo.py de BoxLayout para Screen, temos
+#  que criar um BoxLayout e identar todo codigo do <Widget_geral>.
+<Widget_geral>:
+    # Como transformamos o <Widget_geral> de BoxLayout para Screen, perdemos as
+    #  referencias dos ids usados dentro do <Widget_geral>, como exemplo o
+    #  id: scroll_para_colocar_as_tarefas. Para resolver isso colocamos um id
+    #  para a tela que é name: 'widget_geral'. Screen não possui ids: e sim name:
+    name: 'widget_geral'
+    BoxLayout:
+        orientation: 'vertical'
+        ScrollView:
+            BoxLayout:
+                id: scroll_para_colocar_as_tarefas
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+
+        BoxLayout:
+            size_hint_y: None
+            height: 60
+            TextInput:
+                id: texto_da_tarefa
+                font_size: 30
+                # Cor da letra
+                foreground_color: [1,0,0,1]
+                background_color: [105,105,105,0.5]
+                multiline: False
+            Button:
+                text: '+'
+                size_hint_x: None
+                width: 60
+                on_release: root.adicionar_nova_tarefa()
+
+<Tarefa_mais_botao_remover>:
+    size_hint_y: None
+    height: 200
+    Label:
+        id: descricao_tarefa
+        font_size: 30
+    Button:
+        text: 'X'
+        size_hint_x: None
+        width: 60
+        # O app.root agora é o <Gerenciador_de_telas> e não possui ids, ou seja,
+        #  não possui widgets e sim telas. Precisamos acessar o <Widget_geral>:
+        #  porem o mesmo agora é uma tela e tela não possui ids e sim um name:
+        #  Apos incluirmos um nome na tela <Widget_geral>, colocamos depois do
+        #  root get_screen('widget_geral'). Assim agora conseguimos acessar o ids.
+        on_release:app.root.get_screen('widget_geral').ids.scroll_para_colocar_as_tarefas.remove_widget(root)

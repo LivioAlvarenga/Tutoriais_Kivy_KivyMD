@@ -1,0 +1,20 @@
+# 6 - Python Kivy - ScrollView e Size Hints!
+# https://www.youtube.com/watch?v=-jM0BKWUKKk&list=PLsMpSZTgkF5AV1FmALMgW8W-TvrfR3nrs&index=6
+
+#:kivy 2.0.0
+
+<Tarefas>:
+    # Box layout aqui sera o widget que ira receber os labels e os mesmos serão rolados (scroll)
+    BoxLayout:
+        # este id serve para iteragirmos entre kv e pyton
+        id: box
+        orientation: 'vertical'
+        # Toda vez que colocamos um widget ele irá ocupar a tela inteira se for somente um, o kivy
+        # faz isso atraves do size_hint (1 por padrão), se tiver 2 widgets será 0,5 para cada e etc.
+        # como nosso objetivo é que o BoxLayout seja maior que a tela iremos desligar esta função
+        # (size_hint_y: None) y porque vamos rolar o scroll na vertical, ou seja, vamos desligar o
+        # ajuste automatico
+        size_hint_y: None
+        # Nosso BoxLayout não tem tamanho definido, como vamos adicionando tarefas o tamanho tem
+        # quer ser dinamico, fazemos isso com (height: self.minimum_height)
+        height: self.minimum_height

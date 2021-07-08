@@ -1,0 +1,57 @@
+#:kivy 2.0.0
+
+# Mudamos no arquivo.py a tarefa Scroll_para_colocar_as_tarefas de ScrollView para
+#  BoxLayout, pois vamos precisar colocar mais widgets nesta tarefa e tambem
+#  modificamos o nome para Widget_geral. Obs. o ScrollView so pode ter um widget filho.
+<Widget_geral>:
+    # Colocamos a orientação como vertical para o Scrollficar em cima e o texto e o
+    #  botão adicionar tarefa em baixo.
+    orientation: 'vertical'
+    # Como modificamos a tarefa de ScrollView para BoxLayout precisamos colocar o
+    #  ScrollVie aqui eidentar todo codigo do BoxLayout abaixo.
+    ScrollView:
+        BoxLayout:
+            id: scroll_para_colocar_as_tarefas
+            orientation: 'vertical'
+            size_hint_y: None
+            height: self.minimum_height
+    # Aqui é o label que vamos descrever a nova tarefa e o botão de adicionar a mesma.
+    BoxLayout:
+        # size_hint_y: None para desativar a altura automatica e com height: 60
+        #  definimos a nova altura
+        size_hint_y: None
+        height: 60
+        TextInput:
+            id: texto_da_tarefa
+            # Aumentando o tamanho da fonte p/ 30 padronizando com Label descricao_tarefa
+            font_size: 30
+            # colocando a cor de fundo como cinza 105,105,105 (representa a cor) e o ultimo
+            #  representa o Alpha. O valor alpha significa a opacidade da cor, que varia de
+            #  uma escala entre decimais de 0.0(transparente) e 1.0 (opaco).
+            background_color: [105,105,105,0.5]
+            # Não deixa colocar mais de uma linha com enter.
+            multiline: False
+
+        Button:
+            text: '+'
+            # size_hint_x: None para desativar a largura automatica e com width: 60
+            #  definimos a nova largura do botão, materemos 60 para ficar igual ao
+            #  botão de remover tarefa.
+            size_hint_x: None
+            width: 60
+            # Vamos colocar funcionalidade ao nosso botão ao soltar o botão (on_release),
+            #  vamos colocar um widget novo na raiz Widget_geral com a função
+            #  adicionar_nova_tarefa() que vamos colocar no arquivo.py
+            on_release: root.adicionar_nova_tarefa()
+
+<Tarefa_mais_botao_remover>:
+    size_hint_y: None
+    height: 200
+    Label:
+        id: descricao_tarefa
+        font_size: 30
+    Button:
+        text: 'X'
+        size_hint_x: None
+        width: 60
+        on_release:app.root.ids.scroll_para_colocar_as_tarefas.remove_widget(root)

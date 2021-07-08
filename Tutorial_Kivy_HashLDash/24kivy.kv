@@ -1,0 +1,101 @@
+# 21 - Python Kivy - Criando animações
+# https://www.youtube.com/watch?v=P5-Nn4i7hZY&list=PLsMpSZTgkF5AV1FmALMgW8W-TvrfR3nrs&index=21
+
+#:import utils kivy.utils
+#:kivy 2.0.0
+
+<Gerenciador_de_telas>
+    Menu:
+        name: 'menu'
+    Widget_geral:
+        name: 'widget_geral'
+
+<Menu>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 130
+        spacing: 10
+        canvas:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source: 'Tutoriais_Kivy_KivyMD/Icones/imagem_montanha.jpg'
+        Image:
+            source: 'Tutoriais_Kivy_KivyMD/Icones/Logo_2_ProdutiveSE.png'
+            size_hint_y: None
+            height: 200
+            allow_stretch: True
+        Botao_dinamico:
+            text: 'Lista de tarefas'
+            bold: True
+            color: utils.rgba('#363636')
+            font_size: 15
+            on_release: app.root.current = 'widget_geral'
+        Botao_dinamico:
+            text: 'Assistente'
+            bold: True
+            color: utils.rgba('#363636')
+            font_size: 15
+        Botao_dinamico:
+            text: 'Sair'
+            bold: True
+            color: utils.rgba('#363636')
+            font_size: 15
+            on_release: root.confirmar_saida()
+            cor_dinamica_release: utils.rgba('#8B008B')
+            cor_dinamica_press: utils.rgba('#8B0000')
+
+<Widget_geral>:
+    BoxLayout:
+        orientation: 'vertical'
+        ActionBar:
+            ActionView:
+                ActionPrevious:
+                    app_icon: 'Tutoriais_Kivy_KivyMD/Icones/retornar.png'
+                    app_icon_height: 35
+                    app_icon_width: 35
+                    title: 'Tarefas'
+                    on_release: app.root.current = 'menu'
+                ActionButton:
+                    text: 'Arquivos'
+                ActionSeparator:
+                ActionButton:
+                    icon: 'Tutoriais_Kivy_KivyMD/Icones/sair.png'
+                    text: ''
+                    on_release: app.stop()
+
+        ScrollView:
+            BoxLayout:
+                id: scroll_para_colocar_as_tarefas
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+
+        BoxLayout:
+            size_hint_y: None
+            height: 60
+            TextInput:
+                id: texto_da_tarefa
+                font_size: 30
+                foreground_color: [1,0,0,1]
+                background_color: [105,105,105,0.5]
+                multiline: False
+            Button:
+                text: '+'
+                size_hint_x: None
+                width: 60
+                on_release: root.adicionar_nova_tarefa()
+
+<Tarefa_mais_botao_remover>:
+    size_hint_y: None
+    height: 200
+    Label:
+        id: descricao_tarefa
+        font_size: 30
+    Button:
+        text: 'X'
+        size_hint_x: None
+        width: 60
+        on_release:app.root.get_screen('widget_geral').ids.scroll_para_colocar_as_tarefas.remove_widget(root)

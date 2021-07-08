@@ -1,0 +1,33 @@
+# Tutorial 007 do Kivy: Apresentando a linguagem kv
+# http://inclem.net/2019/12/18/kivy/kivy_tutorial_007_introducing_kv_language/
+
+#:kivy 2.0.0
+
+<Interface>:
+    orientation: 'vertical'
+    DrawingWidget:
+    Slider:
+        min: 0
+        max: 1
+        value: 0.5
+        size_hint_y: None
+        height: 50
+    Slider:
+        min: 0
+        max: 1
+        value: 0.5
+        size_hint_y: None
+        height: 50
+    Slider:
+        min: 0
+        max: 1
+        value: 0.5
+        size_hint_y: None
+        height: 50
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: 50
+        Label:
+            text: 'output colour:'
+        Widget:

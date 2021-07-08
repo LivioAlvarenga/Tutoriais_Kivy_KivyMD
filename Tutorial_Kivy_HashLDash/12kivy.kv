@@ -1,0 +1,54 @@
+# 7 - Python Kivy - Referências e Remoção de Widgets dinamicamente
+# https://www.youtube.com/watch?v=WmiKgFBIqkE&list=PLsMpSZTgkF5AV1FmALMgW8W-TvrfR3nrs&index=7
+
+#:kivy 2.0.0
+
+# Scroll_para_colocar_as_tarefas é o widget pricipal do nosso aplicativo porque é ele que é chamado
+#  na função build
+<Scroll_para_colocar_as_tarefas>:
+    # Box layout aqui sera o widget que ira receber os labels das tarefas e os botões de remover tarefa
+    #  e os mesmos serão rolados (scroll)
+    BoxLayout:
+        # este id serve para iteragirmos entre kv e pyton
+        id: scroll_para_colocar_as_tarefas
+        orientation: 'vertical'
+        # Toda vez que colocamos um widget ele irá ocupar a tela inteira se for somente um, o kivy
+        #  faz isso atraves do size_hint (1 por padrão), se tiver 2 widgets será 0,5 para cada e etc.
+        #  como nosso objetivo é que o BoxLayout seja maior que a tela iremos desligar esta função
+        #  (size_hint_y: None) y porque vamos rolar o scroll na vertical, ou seja, vamos desligar o
+        #  ajuste automatico
+        size_hint_y: None
+        # Nosso BoxLayout não tem tamanho definido, como vamos adicionando tarefas o tamanho tem
+        #  quer ser dinamico, fazemos isso com (height: self.minimum_height)
+        height: self.minimum_height
+
+
+<Tarefa_mais_botao_remover>:
+    # tambem desligamos o auto ajuste na vertical(y) e especificamos uma altura de 200 px
+    size_hint_y: None
+    height: 200
+    Label:
+        # criamos um id para este label (descricao_tarefa), pois vamos chamar o mesmo no
+        #  arquivo.py para mudar o nome da tarefa
+        id: descricao_tarefa
+        font_size: 30
+    Button:
+        # no botão colocaremos o texto X que representa retirar
+        text: 'X'
+        # Aqui novamente desligamos o size_hint agora na posição x, pois não queremos que a largura
+        #  deste botão se auto ajuste ao tamanho do widget.
+        size_hint_x: None
+        # Aqui vamos especificar uma largura para este botão em pixels.
+        width: 60
+        # app é uma correlação ao widget principal ou seja (<Scroll_para_colocar_as_tarefas>)
+        # root (raiz) é o item principal deste widget, root = <Tarefa_mais_botao_remover> primeiro item pai.
+        #  observe que podemos referenciar <Tarefa_mais_botao_remover> tambem como self.parent,
+        #  root = self.parent self é o primeiro item pai o widget Button e parent serio o item pai
+        #  de Button que é <Tarefa_mais_botao_remover>
+        # app.root seria o mesmo que (<tarefas>), <Scroll_para_colocar_as_tarefas> pq ele e o widget
+        #  principal e root especificando que queremos o item pai deste widget.
+        # ids.scroll_para_colocar_as_tarefas referenciamos o objeto scroll_para_colocar_as_tarefas do
+        #  Boxlayout de <Scroll_para_colocar_as_tarefas>
+        # O metodo remove_widget() serve para remover e estamos informando que queremos remover o root
+        #  ou seja, <Tarefa_mais_botao_remover>.
+        on_release:app.root.ids.scroll_para_colocar_as_tarefas.remove_widget(root)
