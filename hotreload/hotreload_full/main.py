@@ -5,7 +5,7 @@ from kivymd.app import MDApp
 from manager_screens import ManagerScreens
 
 
-class Live(App, MDApp):
+class HotReload(App, MDApp):
     KV_FILES = {
         os.path.join(os.getcwd(), 'Tutoriais_Kivy_KivyMD',
                      'hotreload', 'hotreload_full', 'manager_screens.kv'),
@@ -30,4 +30,4 @@ class Live(App, MDApp):
             self.rebuild()
 
 
-Live().run()
+HotReload().run()
