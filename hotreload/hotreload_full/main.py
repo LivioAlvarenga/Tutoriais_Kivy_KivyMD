@@ -23,6 +23,10 @@ class HotReload(App, MDApp):
     def build_app(self):
         Window.bind(on_keyboard=self._rebuild)
         self.manager_screens = ManagerScreens()
+        self.theme_cls.primary_palette = "Green"
+        self.theme_cls.primary_hue = "600"
+        self.theme_cls.accent_palette = "DeepOrange"
+        self.theme_cls.accent_hue = "600"
         return self.manager_screens
 
     def _rebuild(self, *args):
