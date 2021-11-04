@@ -80,6 +80,10 @@ class TelaEdicao(Screen, Geral):
         self.mudar_tela('tela_inicial', 'No')
         ed.resetar()
 
+    def bt_salvar(self):
+        ed.salvar(ed.img_local, ed.img_nome)
+        self.mudar_tela('tela_inicial')
+
 
 sm = ScreenManager()
 sm.add_widget(TelaInicial(name='tela_inicial'))
